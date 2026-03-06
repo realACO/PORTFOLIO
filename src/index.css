@@ -1,0 +1,98 @@
+/* REMOVED: Tailwind imports - using custom CSS now */
+
+/* Continue with original selectors */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.glass {
+  background: rgba(19, 19, 24, 0.6);
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
+  border: 1px solid rgba(42, 42, 48, 0.5);
+}
+
+.glass-hover {
+  background: rgba(19, 19, 24, 0.6);
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
+  border: 1px solid rgba(42, 42, 48, 0.5);
+  transition: all 300ms ease;
+}
+
+.glass-hover:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.15),
+    0 0 60px rgba(139, 92, 246, 0.05);
+}
+
+.glow-text {
+  text-shadow:
+    0 0 20px rgba(139, 92, 246, 0.5),
+    0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, #8b5cf6, #ec4899, #a78bfa);
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.5),
+    rgba(236, 72, 153, 0.3),
+    transparent
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(42, 42, 48, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 42, 48, 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.neon-glow {
+  box-shadow:
+    0 0 15px rgba(139, 92, 246, 0.3),
+    0 0 45px rgba(139, 92, 246, 0.1);
+}
+
+.font-mono-code {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.section-divider {
+  width: 96px;
+  height: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+}
