@@ -1,35 +1,46 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Star, Code2 } from "lucide-react";
+import { Github, Code2 } from "lucide-react";
 
 const projects = [
+  {
+    title: "CodeMeet",
+    desc: "A real-time video interview platform for coding interviews. Features: video calling, live code editor, screen sharing, collaborative coding.",
+    tags: ["React", "NodeJs", "MongoDB"],
+    github: "https://github.com/realACO/CodeMeet",
+    live: "https://codemeet-8wk7.onrender.com",
+    color: "#6C5CE7",
+  },
   {
     title: "Spotify Clone",
     desc: "A music streaming UI clone replicating Spotify interface with playback controls and responsive layout.",
     tags: ["React", "CSS", "JavaScript"],
-    github: "https://github.com/realACO",
+    github: "https://github.com/realACO/Spotify-Clone",
+    live: "https://acospotify.onrender.com",
     color: "#1DB954",
   },
   {
-    title: "Terminal Video Player",
-    desc: "A command-line video player that plays videos directly in the terminal using advanced rendering techniques.",
+    title: "1UP-LEARN",
+    desc: "gamified learning platform for kids featuring educational games, XP/reward systems, leaderboards, parent dashboards",
     tags: ["Python", "Terminal", "FFmpeg"],
-    github: "https://github.com/realACO",
+    github: "https://github.com/realACO/1UP-LEARN",
+    live: "https://1-up-learn.vercel.app/",
     color: "#FFD700",
   },
   {
     title: "GameHub",
     desc: "A gaming platform UI displaying games, ratings, and categories with modern React interface.",
     tags: ["React", "TypeScript", "API"],
-    github: "https://github.com/realACO",
+    github: "https://github.com/realACO/GameHub",
+    live: "https://game-hub-vert-tau-46.vercel.app/",
     color: "#FF6B6B",
   },
   {
-    title: "CodeMeet",
-    desc: "A real-time video interview platform for coding interviews. Features: video calling, live code editor, screen sharing, collaborative coding.",
-    tags: ["React", "WebRTC", "Firebase"],
-    badge: "Building",
-    github: "https://github.com/realACO",
-    color: "#6C5CE7",
+    title: "Terminal Video Player",
+    desc: "A web-based video player with a terminal-inspired interface, mimicking classic command-line aesthetics.",
+    tags: ["HTML", "CSS"],
+    github: "https://github.com/realACO/Terminal-video-player",
+    live: "https://realaco.github.io/Terminal-video-player/",
+    color: "#FFA500",
   },
 ];
 
@@ -64,9 +75,19 @@ const ProjectsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.15, duration: 0.6 }}
-            className="group relative"
+            role="link"
+            tabIndex={0}
+            aria-label={`Open ${p.title} live site`}
+            onClick={() => window.open(p.live, "_blank", "noreferrer")}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                window.open(p.live, "_blank", "noreferrer");
+              }
+            }}
+            className="group relative cursor-pointer outline-none"
           >
-            <div className="glass-hover rounded-3xl p-8 h-full relative overflow-hidden transition-all duration-500">
+            <div className="glass-hover rounded-3xl p-8 h-full relative overflow-hidden transition-all duration-500 cursor-pointer">
               {/* Animated gradient overlay */}
               <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -99,19 +120,6 @@ const ProjectsSection = () => (
                       >
                         <Code2 size={24} style={{ color: p.color }} />
                       </div>
-                      {p.badge && (
-                        <motion.span
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ repeat: Infinity, duration: 2 }}
-                          className="px-3 py-1 rounded-full text-xs font-bold"
-                          style={{
-                            backgroundColor: `${p.color}20`,
-                            color: p.color,
-                          }}
-                        >
-                          🚀 {p.badge}
-                        </motion.span>
-                      )}
                     </div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
                       {p.title}
@@ -124,7 +132,8 @@ const ProjectsSection = () => (
                     href={p.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-full glass-hover text-muted-foreground hover:text-primary transition-colors"
+                    onClick={(event) => event.stopPropagation()}
+                    className="relative z-20 w-10 h-10 flex items-center justify-center rounded-full glass-hover text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Github size={20} />
                   </motion.a>
@@ -145,7 +154,7 @@ const ProjectsSection = () => (
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.15 + 0.5 + idx * 0.1 }}
                       whileHover={{ scale: 1.1, y: -2 }}
-                      className="px-4 py-2 rounded-xl bg-secondary/80 text-sm font-medium border border-border/50 hover:border-primary/50 transition-all cursor-default"
+                      className="px-4 py-2 rounded-xl bg-secondary/80 text-sm font-medium border border-border/50 hover:border-primary/50 transition-all cursor-pointer"
                     >
                       {t}
                     </motion.span>
